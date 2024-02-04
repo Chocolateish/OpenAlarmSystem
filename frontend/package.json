@@ -14,9 +14,9 @@
   "homepage": "https://github.com/Chocolateish/OpenAlarmSystem#readme",
   "main": "index.ts",
   "scripts": {
-    "dev": "vite -m pages",
-    "build": "tsc && vite build -m pages",
-    "serve": "vite preview --mode pages",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
     "dev:tests": "vite -m test",
     "build:tests": "tsc && vite build -m tests",
     "serve:tests": "vite preview --mode testServe",

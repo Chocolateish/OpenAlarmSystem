@@ -8,47 +8,22 @@ export default defineConfig(({ command, mode }) => {
 
   switch (command) {
     case "serve":
-      if (mode === "pages") {
-        return {
-          server: {
-            host: true,
-            port: 666,
-          },
-          build: {
-            outDir: "../docs",
-            emptyOutDir: true,
-          },
-          preview: {
-            port: 666,
-          },
-          root: "./pages",
-        };
-      } else {
-        return {
-          server: {
-            host: true,
-            port: 999,
-          },
-          build: {
-            outDir: "./dist",
-          },
-          preview: {
-            port: 999,
-          },
-          root: "./cypress/pages",
-        };
-      }
+      return {
+        server: {
+          host: true,
+          port: 666,
+        },
+        build: {
+          outDir: "../docs",
+          emptyOutDir: true,
+        },
+        preview: {
+          port: 666,
+        },
+        root: "./src",
+      };
     case "build":
-      if (mode === "pages") {
-        return {
-          root: "./pages",
-          build: {
-            outDir: "../docs",
-            emptyOutDir: true,
-          },
-          base: "",
-        };
-      } else if (mode === "tests" || mode === "production") {
+      if (mode === "tests" || mode === "production") {
         return {
           root: "./cypress/pages",
           build: {
@@ -58,22 +33,12 @@ export default defineConfig(({ command, mode }) => {
         };
       } else {
         return {
+          root: "./src",
           build: {
-            lib: {
-              entry: resolve(__dirname, "src/index.ts"),
-              name: name,
-              fileName: "index",
-              formats: ["es", "cjs"],
-            },
-            rollupOptions: {
-              external: Object.keys(dependencies),
-            },
+            outDir: "../docs",
+            emptyOutDir: true,
           },
-          plugins: [
-            dts({
-              rollupTypes: true,
-            }),
-          ],
+          base: "",
         };
       }
   }
